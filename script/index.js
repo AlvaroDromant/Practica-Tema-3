@@ -1,3 +1,6 @@
+// Autor: Alvaro Dromant Ligero
+// Git Hub: https://github.com/AlvaroDromant/Practica-Tema-3.git
+
 window.addEventListener("load", acceso)
 
 function acceso() {
@@ -6,6 +9,8 @@ function acceso() {
     const diaNacimiento = parseInt(prompt("Introduzca su DIA de nacimiento"))
     const mesNacimiento = parseInt(prompt("Introduzca su MES de nacimiento"))
     const anioNacimiento = parseInt(prompt("Introduzca su AÑO de nacimiento"))
+
+if(nombreCompleto !== "" && !isNaN(diaNacimiento) && !isNaN(mesNacimiento) && !isNaN(anioNacimiento)){
 
 //Titulo
 document.write("<h1 style='font-weight: bold;'>PRÁCTICA 3 - DWEC</h1>");
@@ -125,9 +130,57 @@ document.write(`<br>`)
 //Numero al azar entre 0 y 100
     const numeroAzar = generarNumeroAzar();
     document.write(`El número aleatorio entre 0 y 100 es: <strong>${numeroAzar}</strong>`);
+    document.write(`<br>`)
+    document.write(`<br>`)
 
+//Reinicio
+const botonReinicio = document.createElement('button');
+botonReinicio.textContent = 'Reiniciar';
+botonReinicio.addEventListener('click', function() {
+location.reload();
+})
+document.body.appendChild(botonReinicio);
 
+//Nueva ventana
+let ventanaSecundaria;
+
+function abrirNuevaVentana() {
+    
+    ventanaSecundaria = window.open('', '_blank', 'width=800, height=600, resizable=no');
+
+    ventanaSecundaria.document.write(`
+        <html>
+        <head>
+            <title>Ejemplo de Ventana Nueva</title>
+        </head>
+        <body>
+            <h1>Ejemplo de Ventana Nueva</h1>
+            <p>URL completa: ${window.location.href}</p>
+            <p>Protocolo utilizado: ${window.location.protocol}</p>
+            <iframe src="https://hotellallastra.app/inicio" width="800" height="600" id="miIframe"></iframe>
+            <br>
+            <button onclick="cerrarVentana()">Cerrar Ventana</button>
+            <script>
+                function cerrarVentana() {
+                    window.close();
+                }
+            </script>
+        </body>
+        </html>
+    `);
 }
+
+const botonAbrirVentana = document.createElement('button');
+botonAbrirVentana.textContent = 'Abrir Ventana';
+botonAbrirVentana.addEventListener('click', abrirNuevaVentana);
+
+
+document.body.appendChild(botonAbrirVentana);
+
+}else{
+  alert("No pueden quedar campos vacios, intentelo de nuevo.")
+  location.reload();
+}}
 
 
 
